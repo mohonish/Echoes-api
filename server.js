@@ -44,6 +44,16 @@ function handleError(res, reason, message, code) {
  * POST: create a new echo.
  */
 
+ app.get("/echoes", function(req, res) {
+   db.collection(ECHOES_COLLECTION).find({}).toArray(function(err, docs) {
+     if (err) {
+       handleError(res, err.message, "Failed to get echoes!");
+     } else {
+       res.status(200).json(docs);
+     }
+   });
+ });
+
  app.post("/echoes", function(req, res) {
    console.log("Received POST req!");
 
