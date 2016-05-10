@@ -4,7 +4,7 @@ var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
-var Echoes_Collection = "echoes"
+var ECHOES_COLLECTION = "echoes"
 
 var app = express();
 app.use(express.static(__dirname + "/public"));
@@ -48,7 +48,17 @@ function handleError(res, reason, message, code) {
  });
 
  app.post("/echoes", function(req, res) {
+   var newEcho = req.body;
+   newEcho.createDate = new Date();
+
+   //TODO: validation for title, body, and from.
+
+   db.collection(ECHOES_COLLECTION).insertOne(newEcho, function(err, doc) {
+     if (err) {
+       handleError(res, err.message, "Failed to create new echo!")
+     } else {
+       res.status(201).json(doc.ops[0]);
+     }
+   });
 
  });
-
- 
