@@ -31,7 +31,7 @@ mongodb.MongoClient.connect(mongodb_URI, function(err, database) {
 
 });
 
-//TODO: routes.
+//TODO: more routes, and more descriptive.
 
 // Generic error handler reused.
 function handleError(res, reason, message, code) {
@@ -45,7 +45,7 @@ function handleError(res, reason, message, code) {
  */
 
  app.post("/echoes", function(req, res) {
-   console.log("Received POST req:", req);
+   console.log("Received POST req!");
 
    var newEcho = req.body;
    newEcho.createDate = new Date();
