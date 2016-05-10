@@ -44,10 +44,6 @@ function handleError(res, reason, message, code) {
  * POST: create a new echo.
  */
 
- app.get("/echoes", function(req, res) {
-
- });
-
  app.post("/echoes", function(req, res) {
    console.log("Received POST req:", req);
 
@@ -56,13 +52,13 @@ function handleError(res, reason, message, code) {
 
    //TODO: validation for title, body, and from.
 
-   console.log("Inserting to DB:")
+   console.log("Inserting to DB:");
 
    db.collection(ECHOES_COLLECTION).insertOne(newEcho, function(err, doc) {
      if (err) {
-       handleError(res, err.message, "Failed to create new echo!")
+       handleError(res, err.message, "Failed to create new echo!");
      } else {
-       console.log("Created new Echo!")
+       console.log("Created new Echo!");
        res.status(201).json(doc.ops[0]);
      }
    });
