@@ -49,15 +49,20 @@ function handleError(res, reason, message, code) {
  });
 
  app.post("/echoes", function(req, res) {
+   console.log("Received POST req:", req);
+
    var newEcho = req.body;
    newEcho.createDate = new Date();
 
    //TODO: validation for title, body, and from.
 
+   console.log("Inserting to DB:")
+
    db.collection(ECHOES_COLLECTION).insertOne(newEcho, function(err, doc) {
      if (err) {
        handleError(res, err.message, "Failed to create new echo!")
      } else {
+       console.log("Created new Echo!")
        res.status(201).json(doc.ops[0]);
      }
    });
