@@ -11,8 +11,8 @@ app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 
 var db;
-//var mongodb_URI = "mongodb://admin:@dmin!23@ds043022.mlab.com:43022/echoesdb"
-var mongodb_URI = "mongodb%3A%2F%2Fadmin%3A%40dmin%2123%40ds043022.mlab.com%3A43022%2Fechoesdb"
+var mongodb_URI = "mongodb://admin:admin@ds043022.mlab.com:43022/echoesdb"
+//var mongodb_URI = "mongodb%3A%2F%2Fadmin%3A%40dmin%2123%40ds043022.mlab.com%3A43022%2Fechoesdb"
 
 mongodb.MongoClient.connect(mongodb_URI, function(err, database) {
   if (err) {
