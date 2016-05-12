@@ -55,14 +55,14 @@ function handleError(res, reason, message, code) {
  });
 
  app.post("/echoes", function(req, res) {
-   console.log("Received POST req!");
+   console.log("Received POST req! body: " + req.body);
 
    var newEcho = req.body;
    newEcho.createDate = new Date();
 
    //TODO: validation for title, body, and from.
 
-   console.log("Inserting to DB:");
+   console.log("Inserting to DB:" + newEcho);
 
    db.collection(ECHOES_COLLECTION).insertOne(newEcho, function(err, doc) {
      if (err) {
